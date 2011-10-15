@@ -1,0 +1,13 @@
+<h1>Tous les prospects</h1>
+
+<%= link_to "Nouveau Prospect", new_prospect_path %><br/>
+
+<%= form_tag prospects_path, :method => 'get', :id => "prospects_search" do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>  
+  
+ <div id="prospects_found"><%= render 'prospect' %></div>
+  
+<% end %>

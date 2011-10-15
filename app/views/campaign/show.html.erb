@@ -1,0 +1,26 @@
+<table class="profile" summary="Information profil">
+  <tr>
+    <td class="main">
+      <h1>
+        Campagne : <%= @title %>, créée le <%=  @created_at %> 
+      </h1>
+      <strong>String1</strong> <%= @client.string1 %><br />
+      <strong>Integer1</strong> <%= @client.integer1 %><br />
+    <ul>
+      <% for attachment in @client.attachments %>
+        <li>
+        <%= attachment.description %> - <%= link_to("Download", attachment.file_url) %>
+        </li>
+      <% end %>
+    </ul>
+    </td>
+    <td class="sidebar round">
+      <strong>Informations sur le prospect</strong><br/>
+      <strong>Nom</strong> <%= @prospect.last_name %><br/>
+      <strong>Prénom</strong> <%= @prospect.first_name %><br/>
+      <strong>URL</strong>  <%= link_to prospect_path(@prospect), @prospect %><br/>
+      <strong>EMail</strong> <%= @prospect.email %><br/>
+      <strong>Statut du prospect</strong> <%= @prospect.prospect_status %>
+    </td>
+  </tr>
+</table>

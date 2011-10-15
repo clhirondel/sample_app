@@ -1,0 +1,18 @@
+<tr>
+  <td class="micropost">
+    <span class="user">
+      <%= link_to feed_item.user.firstname + " " + feed_item.user.lastname, feed_item.user %>
+    </span>
+    <span class="content"><%= feed_item.content %></span>
+    <span class="timestamp">
+      Posté il y a <%= time_ago_in_words(feed_item.created_at) %>.
+    </span>
+  </td>
+  <% if current_user?(feed_item.user) %>
+  <td>
+    <%= link_to "supprimer", feed_item, :method => :delete,
+                                     :confirm => "Etes-vous certain ?",
+                                     :title => feed_item.content %>
+  </td>
+  <% end %>
+</tr>

@@ -1,0 +1,116 @@
+<h1><%= @title %></h1>
+<div id="bardivs">
+    <div id="progressbar"></div>
+    <div id="progresstext"></div>
+</div>
+<%= form_for(@prospect, :validate=>true) do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <div class="timespent">
+    <%= f.text_field :timespent %>
+  </div>
+  <div class="field">
+    <%= f.label :phone_number, "Téléphone fixe:" %>
+    <%= f.text_field :phone_number %>
+  </div>
+  <div class="field">
+    <%= f.label :office_phone_numberr, "Téléphone du bureau:" %>
+    <%= f.text_field :office_phone_number %>
+  </div>
+  <div class="field">
+    <%= f.label :mobile_phone_number, "Téléphone mobile:"  %>
+    <%= f.text_field :mobile_phone_number %>
+  </div>
+  <div class="field">
+    <%= f.label :professional_status, "Status professionnel:"  %>
+    <%= f.select :professional_status, options_for_select([["", ""], "Cadre", "Non Cadre"]) %>
+  </div>
+  <div class="checkbox">
+    <%= f.label :professional_status, "Civilité:"  %>
+    <%= f.radio_button :civility, "M." %>M.
+    <%= f.radio_button :civility, "Mme" %>Mme
+    <%= f.radio_button :civility, "Melle" %>Melle
+  </div>
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :birthyear %>
+    <%= f.text_field :birthyear %>
+  </div>
+  <div class="field">
+    <%= f.label :situation_familiale %>
+    <%= f.text_field :situation_familiale %>
+  </div>
+  <div class="field">
+    <%= f.label :nb_enfants %>
+    <%= f.text_field :nb_enfants %>
+  </div>
+  <div class="field">
+    <%= f.label :nb_enfants_a_charges %>
+    <%= f.text_field :nb_enfants_a_charges %>
+  </div>
+  <div class="field">
+    <%= f.label :revenus_mensuels_net %>
+    <%= f.text_field :revenus_mensuels_net %>
+  </div>
+  <div class="field">
+    <%= f.label :logement_rp %>
+    <%= f.text_field :logement_rp %>
+  </div>
+  <div class="field">
+    <%= f.label :mensualite_rp %>
+    <%= f.text_field :mensualite_rp %>
+  </div>
+  <div class="field">
+    <%= f.label :impots_sur_le_revenu %>
+    <%= f.text_field :impots_sur_le_revenu %>
+  </div>
+  <div class="field">
+    <%= f.label :charges_rp %>
+    <%= f.text_field :charges_rp %>
+  </div>
+  <div class="field">
+    <%= f.label :charges_autres %>
+    <%= f.text_field :charges_autres %>
+  </div>
+  <div class="field">
+    <%= f.label :taux_endettement %>
+    <%= f.text_field :taux_endettement %>
+  </div>
+  <div id="validate_box">
+    <div class="radiobutton">
+      <%= f.radio_button :prospect_status, "meeting booked" %>RDV OK<br />
+      <p id="prospect_prospect_status_meeting_booked" class="hidden_fields">
+        <%= f.label :meeting_at %><br />
+         <%= f.text_field :meeting_at, :value => @prospect.meeting_at.try(:strftime,"%d/%m/%Y %H:%M"), :class => "datepicker" %>
+      </p>
+    </div>
+    <div class="radiobutton">
+      <%= f.radio_button :prospect_status, "to classify" %>A classer<br />
+    </div>
+    <div class="radiobutton">
+      <%= f.radio_button :prospect_status, "to recall" %>A rappeler<br />
+      <p id="prospect_prospect_status_to_recall" class="hidden_fields">
+        <%= f.label :to_recall %><br />
+        <%= f.text_field :to_recall %><br />
+        <%= f.label :to_recall_at %><br />
+        <%= f.text_field :to_recall_at, :value => @prospect.to_recall_at.try(:strftime,"%d/%m/%Y %H:%M"), :class => "datepicker" %>
+      </p>
+    </div>
+    <div class="radiobutton">
+      <%= f.radio_button :prospect_status, "off target" %>Hors Cible<br />
+      <p id="prospect_prospect_status_off_target" class="hidden_fields">
+        <%= f.label :off_target_cause %><br />
+        <%= f.text_area :off_target_cause %>
+      </p>
+    </div>
+    <div class="actions">
+      <%= f.submit "Update" %>
+    </div>
+  </div>
+<% end %>

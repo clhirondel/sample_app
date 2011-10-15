@@ -1,0 +1,36 @@
+<tr>
+  <td class="prospect">
+    <% if client.created_at == client.updated_at %>
+      <span class="user">
+        Le client <%= link_to client.prospect.first_name + " " + client.prospect.last_name, client %>
+      </span>
+      <span class="name">
+        a été créé 
+      </span>
+    <% else %>
+      <span class="user">
+        Le client <%= link_to client.prospect.first_name + " " + client.prospect.last_name, client %>
+      </span>
+      <span class="name">
+        a été modifié
+      </span>
+    <% end %>
+      <span class="timestamp">
+        Posté il y a <%= time_ago_in_words(client.created_at) %>.
+      </span>
+  </td>
+  <td>
+    <%= if can? :update, @client  %>
+    <%= link_to "éditer", edit_client_path(client) %>
+    <%= end %>
+  </td>
+  <td>
+    <%= if can? :destroy, @client or current_user?(client.prospect.user) %>
+    <%= link_to "supprimer", client, :method => :delete,
+                                :confirm => "Etes-vous certain ?",
+                                :title => client.prospect.first_name+ " " + client.prospect.last_name,
+                                :remote=>true, :class=>'delete_client' %>
+    <%= end %>
+  </td>
+  <% end %>
+</tr>

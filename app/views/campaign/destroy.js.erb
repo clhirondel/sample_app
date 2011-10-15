@@ -1,0 +1,8 @@
+jQuery(function($) {
+
+$('.delete_client').bind('ajax:success', 
+  function() {
+    $(this).closest('tr').fadeOut();
+  }
+ );
+});
