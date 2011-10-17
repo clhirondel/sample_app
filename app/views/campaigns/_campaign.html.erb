@@ -1,0 +1,33 @@
+<tr>
+  <td class="prospect">
+    <% if campaign.created_at == campaign.updated_at %>
+      <span class="name">
+        La campagne <%= link_to campaign.name %> a été créée.
+      </span>
+      <span class="timestamp">
+        Posté: <%= time_ago_in_words(campaign.created_at) %>.
+      </span>
+    <% else %>
+      <span class="name">
+        La campagne <%= link_to campaign.name %> a été modifiée.
+      </span>
+    <% end %>
+      <span class="timestamp">
+        Posté: <%= time_ago_in_words(campaign.updated_at) %>.
+      </span>
+  </td>
+  <td>
+    <%= if can? :update, @campaign  %>
+    <%= link_to "éditer", edit_campaign_path(campaign) %>
+    <%= end %>
+  </td>
+  <td>
+    <%= if can? :destroy, @campaign %>
+    <%= link_to "supprimer", campaign, :method => :delete,
+                                :confirm => "Etes-vous certain ?",
+                                :title => campaign.name,
+                                :remote=>true, :class=>'delete_prospect' %>
+    <%= end %>
+  </td>
+  <% end %>
+</tr>

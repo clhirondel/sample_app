@@ -1,0 +1,53 @@
+<h1>Tous les prospects</h1>
+
+<%= link_to "Nouveau Prospect", new_prospect_path %><br/>
+
+<div id="status_list">
+  <ul class="prospects_status">
+    <li>
+      <%= link_to "Tous", prospects_path %>
+    </li>
+    <li>
+      <%= link_to "A rappeler", prospects_path(:prospect_status => "to_recall") %>
+    </li>
+    <li>
+      <%= link_to "A classer", prospects_path(:prospect_status => "to_classify") %>
+    </li>
+    <li>
+      <%= link_to "RDV OK", prospects_path(:prospect_status => "meeting_booked") %>
+    </li>
+    <li>
+      <%= link_to "Hors cible", prospects_path(:prospect_status => "off_target") %>
+    </li>
+  </ul>
+</div>
+<div id="prospect_params">
+<%= form_tag prospects_path, :method => 'get', :id => "prospects_date_range" do %>
+  <p>
+    <% if !params[:prospect_status].nil? %>  
+      <%= hidden_field_tag :prospect_status, params[:prospect_status] %>
+    <% end %>
+    <% if !params[:direction].nil? %>  
+      <%= hidden_field_tag :direction, params[:direction] %>
+    <% end %>
+    <% if !params[:sort].nil? %>  
+      <%= hidden_field_tag :sort, params[:direction] %>
+    <% end %>
+    <% if !params[:search].nil? %>    
+      <%= hidden_field_tag :search, params[:search] %>
+    <%  end %>
+      <%= text_field_tag  :min_updated_date, params[:min_updated_date], :class => "datepicker" %>
+      <%= text_field_tag :max_updated_date, params[:max_updated_date], :class => "datepicker" %>
+    <%= submit_tag "Rechercher période", :name => nil %>
+  </p>
+<%  end %>
+
+<%= form_tag prospects_path, :method => 'get', :id => "prospects_search" do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>  
+ <div id="prospects_found"><%= render 'prospect' %></div>
+
+<% end %>
+ </div>

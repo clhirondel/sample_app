@@ -1,0 +1,449 @@
+.container {
+  width: 710px;
+}
+
+body {
+  background: #cff;
+}
+
+header {
+  padding-top: 20px;
+}
+
+header img {
+  padding: 1em;
+  background: #fff;
+}
+
+section {
+  margin-top: 1em;
+  font-size: 120%;
+  padding: 20px;
+  background: #fff;
+}
+
+section h1 {
+  font-size: 150%;
+}
+
+
+input[type=text],[type=password]  {
+    color:#5e5e5e;
+    width:150px;
+    box-shadow:  inset 1px 2px 5px #dcdcdc;
+    -moz-box-shadow:  inset 1px 2px 5px #dcdcdc;
+    -o-box-shadow:  inset 1px 2px 5px #dcdcdc;
+    -webkit-box-shadow:  inset 1px 2px 5px #dcdcdc;    
+}
+
+/* Liens */
+
+a {
+  color: #09c;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #069;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #069;
+}
+
+/* Navigation */
+
+nav {
+  float: right;
+}
+
+nav {
+  background-color: white;
+  padding: 0 0.7em;
+  white-space: nowrap;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 0.2em 0;
+}
+
+nav ul li a {
+  padding: 0 5px;
+  font-weight: bold;
+}
+
+nav ul li a:visited {
+  color: #09c;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Bouton inscription */
+
+a.signup_button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 190px;
+  color: #fff;
+  background: #006400;
+  font-size: 150%;
+  font-weight: bold;
+  padding: 20px;
+}
+
+/* Coins arrondis */
+
+.round {
+  -moz-border-radius:    10px;
+  -webkit-border-radius: 10px;
+  border-radius:         10px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 10px;
+  width: 710px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer nav {
+  float: none;
+}
+table.order_by{
+    border-collapse: collapse;
+    width:inherit;
+}
+/* Order datas */
+.order_by td {
+    padding: 4px 10px;
+    border:none;
+}
+.order_by td .current{
+    padding-right: 12px;
+    background-repeat: no-repeat;
+    background-position: right center;
+    font-weight: bold;
+}
+
+.order_by td .asc{
+   background-image: url(/images/up_arrow.png);
+}
+
+.order_by td .desc{
+   background-image: url(/images/down_arrow.png);
+}
+
+/* User show page */
+
+table.profile {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+td.main {
+  width: 70%;
+  padding: 1em;
+}
+
+td.sidebar {
+  width: 30%;
+  padding: 1em;
+  vertical-align: top;
+  background: #ffc;
+}
+
+div.field, div.actions {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+div.actions {
+    text-align: center;
+}
+.field_with_errors {
+  /*margin-top: 10px;
+  padding: 2px; 
+  background-color: red; */
+  display: inline;
+}
+
+.field_with_errors .message {
+    opacity: 0.8;
+    color: red;
+
+    font-size: 12px;
+    position: absolute;
+    left: 280px;
+    width: 150px;
+    top: -17px;
+    background:#000;
+    color:#fff;
+    box-shadow: 0px 0px 6px #000;
+    -moz-box-shadow: 0px 0px 6px #000;
+    -webkit-box-shadow: 0px 0px 6px #000;
+    padding:4px 10px 4px 10px;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+}
+
+#error_explanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  margin: 10px auto;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+ul.users {
+  margin-top: 1em;
+}
+
+.users li {
+  list-style: none;
+}
+
+/* Prospects show */
+h1.prospect {
+  margin-bottom: 0.3em;
+}
+
+ul.prospects_status {;
+    list-style: none;
+    height: 45px;
+
+}
+
+ul.prospects_status li{
+  background: none repeat scroll 0 0 #F7F5F4;
+  display: block;
+  float: left;
+  list-style: none outside none;
+  margin-left: 2px;
+  padding: 13px;
+  text-align: center;
+}
+
+table.prospects {
+  margin-top: 1em;
+}
+
+table.prospects tr {
+  height: 70px;
+}
+
+table.prospects tr {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  width: 50px;
+}
+
+table.prospects tr td.prospect {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  padding-top: 10px;
+}
+
+table.prospects tr td.prospect span.timestamp {
+  display: block;
+  font-size: 85%;
+  color: #666;
+}
+
+div.user_info span.prospects {
+  font-size: 80%;
+}
+
+form.new_prospect {
+  margin-bottom: 2em;
+}
+
+form.new_prospect textarea {
+  height: 4em;
+  margin-bottom: 0;
+}
+
+/* Microposts show */
+
+h1.micropost {
+  margin-bottom: 0.3em;
+}
+
+table.microposts {
+  margin-top: 1em;
+}
+
+table.microposts tr {
+  height: 70px;
+}
+
+table.microposts tr td.gravatar {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  width: 50px;
+}
+
+table.microposts tr td.micropost {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  padding-top: 10px;
+}
+
+table.microposts tr td.micropost span.timestamp {
+  display: block;
+  font-size: 85%;
+  color: #666;
+}
+
+div.user_info img {
+  padding-right: 0.1em;
+}
+
+div.user_info a {
+  text-decoration: none;
+}
+
+div.user_info span.microposts {
+  font-size: 80%;
+}
+
+form.new_micropost {
+  margin-bottom: 2em;
+}
+
+form.new_micropost textarea {
+  height: 4em;
+  margin-bottom: 0;
+}
+
+#validate_box {
+    position: absolute;
+    right: 15px;
+    top: 210px;
+    width: 10em;
+    margin: -2.5em 0 0 0;
+    z-index: 5;
+    background: hsla(80, 90%, 40%, 0.7);
+    color: white;
+    text-align: left;
+    border: solid hsla(80, 90%, 40%, 0.5);
+    border-right: none;
+    padding: 0.5em 0.5em 0.5em 2.5em;
+    box-shadow: 0 1px 3px black;
+    border-radius: 1em;
+}
+
+div .field label {
+    float: left;
+    display: block;
+    font-size: 12px;
+    width: 150px;
+    margin: 0.5em 0;
+    
+}
+
+div .hidden_fields input {
+    width: 8em;
+    
+}
+
+div .hidden_fields textarea#prospect_off_target_cause {
+    height: 4em;
+    width: 8em;
+}
+div .radiobutton {
+    margin-bottom: 10px;
+    margin-top: 10px;   
+}
+
+
+/* ProgressBar */
+#bardivs {
+      margin-left: auto;
+  margin-right: auto;
+    width:235px; /* or whatever the of the porgress bar is */
+    /* 
+       The position of #bardivs must be something other than
+       static (the default) so that its children will be positioned
+       relative to it.
+    */
+    position:relative;
+}
+#progressbar {
+    width: 180px;
+    height:22px;
+    border: 1px solid #E78F08;
+}
+div.ui-progressbar {
+    height:22px;
+}
+div.ui-progressbar-value {
+    background-image: url("../images/pbar-ani.gif");
+    border: 1px solid #E78F08;
+}
+
+div.timespent {
+    font-size: 20px;
+    text-align: center;
+}
+
+div.timespent input {
+    width:80px;
+    font-size: 20px;
+    text-align: right;
+    border:none;
+    box-shadow: none;
+}
+#progresstext {
+    position:absolute;
+    top:3px;
+    right:0;
+}
+/* Client file upload description */
+form.edit_client textarea {
+  height: 4em;
+  margin-bottom: 0;
+}
+
+/* jquery-ui-timepicker-addon */
+.ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
+.ui-timepicker-div dl{ text-align: left; }
+.ui-timepicker-div dl dt{ height: 25px; }
+.ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }

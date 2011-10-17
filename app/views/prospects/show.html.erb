@@ -1,0 +1,15 @@
+  <table class="profile" summary="Information profil">
+  <tr>
+    <td class="main">
+      <h1>
+        Vue du Prospect <%= @title %>
+      </h1>
+      <strong>Nom</strong> <%= @prospect.last_name%><br />
+      <strong>Prénom</strong> <%= @prospect.first_name %><br />
+      <strong>EMail</strong> <%= @prospect.email %><br />
+      <strong>Adresse</strong> <%= @prospect.address %><br />
+      <strong>Age</strong> <%= @prospect.birthyear %><br />
+      <strong>Statut du prospect</strong> <%= @prospect.prospect_status %>
+    </td>
+  </tr>
+</table>

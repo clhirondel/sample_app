@@ -1,0 +1,51 @@
+
+<%= hidden_field_tag :prospect_status, params[:prospect_status] %>
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<%= hidden_field_tag :min_updated_date, params[:min_updated_date] %>
+<%= hidden_field_tag :max_updated_date, params[:max_updated_date] %>
+<table class="order_by">
+  <td>
+    <%= sortable "last_name", "Tri par nom" %>
+  </td>
+  <td>
+    <%= sortable "updated_at", "Tri par date" %>
+  </td>
+</table>
+<%= will_paginate %>
+<table class="prospects" summary="User prospects">
+  <% for prospect in @prospects %>
+<% if can? :read, prospect %>  
+    <tr>
+      <td class="prospect">
+        <% if prospect.created_at == prospect.updated_at %>
+        <span class="user">
+          <%= link_to prospect.user.firstname + " " + prospect.user.lastname, prospect.user %>
+        </span>
+        <span class="name">a un nouveau prospect : 
+          <%= link_to prospect.first_name+ " " + prospect.last_name, prospect %>
+        </span>
+        <% else %>
+        <span class="name">Le prospect  
+          <%= link_to prospect.first_name+ " " + prospect.last_name, prospect %> a été modifié
+        </span>
+        <%  end %>
+        <span class="timestamp">
+          Mis à jour le <%= prospect.updated_at %>.
+        </span>
+      </td>
+      <td>
+      <% if can? :update, prospect %>  
+        <%= link_to "éditer", edit_prospect_path(prospect) %>
+      <% end %>
+      </td>
+      <td>
+      <% if can? :destroy, prospect %>
+        <%= link_to "supprimer", prospect, :method => :delete, :title => "#{prospect.first_name} #{prospect.last_name}" %>
+      <%  end %>
+      </td>
+    </tr>
+    <%  end %>
+<%  end %>
+</table>
+<%= will_paginate %>

@@ -1,0 +1,11 @@
+<h1>Toutes les campagnes</h1>
+
+<%= link_to "Nouvelle Campagne", new_campaign_path %><br/>
+
+<%= will_paginate %>
+
+<table class="prospects" summary="Campaigns">
+  <%= render @campaigns %>    
+</table>
+
+<%= will_paginate %>
