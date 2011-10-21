@@ -1,0 +1,24 @@
+#Encoding: UTF-8
+<h1><%= @title %></h1>
+<%= form_for(@campaign, :validate=>true) do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <div class="field">
+    <%= f.label :name, "Intitulé:" %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :campaign_type, "Statut professionnel:"  %>
+    <%= f.select :campaign_type, options_for_select([["Décline", "Décline"], "Annuaire d'école", "Annuaire d'entreprise"]) %>
+  </div>
+  <div class="field">
+    <%= f.label :first_phone_number, "Premier numéro de téléphone:"  %>
+    <%= f.text_field :first_phone_number %>
+  </div>
+  <div class="field">
+    <%= f.label :last_phone_number, "Dernier numéro de téléphone:"  %>
+    <%= f.text_field :last_phone_number %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Soumettre" %>
+  </div>
+<% end %>

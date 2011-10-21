@@ -1,0 +1,71 @@
+<%= hidden_field_tag :type, params[:type] %>
+<%= hidden_field_tag :dir, params[:dir] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<%= hidden_field_tag :min_date, params[:min_date] %>
+<%= hidden_field_tag :max_date, params[:max_date] %>
+<table class="order_by">
+  <td>
+    <%= sortable "name", "Tri par nom" %>
+  </td>
+  <td>
+    <%= sortable "updated_at", "Tri par date" %>
+  </td>
+</table>
+<%= will_paginate %>
+<table class="prospects" summary="User prospects">
+ <thead>
+  <tr>
+   <th>Nom</th>
+   <th>Type</th>
+   <th>Description</th>
+   <th>Premier numéro</th>
+   <th>Dernier numéro</th>
+   <th>Date de saisie</th>
+   <th>Modifications</th>
+  </tr>
+ </thead>
+ <tbody>
+<% for campaign in @campaigns %>
+<% if can? :read, campaign %>
+
+    <tr>
+      <td>
+        <%= link_to campaign.name, campaign %>
+      </td>
+      <td>
+        <%= campaign.campaign_type %>
+      </td>
+      <td>
+        <%= truncate(campaign.description, :length => 17) %>
+      </td>
+      <td>
+        <% if campaign.first_phone_number? %>
+        <%= campaign.first_phone_number %>
+        <% else %>
+        None
+        <% end %>
+      </td>
+      <td>
+        <% if campaign.last_phone_number? %>
+        <%= campaign.last_phone_number %>
+        <% else %>
+        None
+        <% end %>
+      </td> 
+      <td>
+        <%= campaign.updated_at.strftime("%e %b %Y %H:%M") %>
+      </td>
+      <td>
+        <% if can? :update, campaign %>  
+          <%= link_to "éditer", edit_campaign_path(campaign) %>
+        <% end %>
+        <% if can? :destroy, campaign %>
+          <%= link_to "supprimer", campaign, :method => :delete, :title => "Supprimer #{campaign.name} ?" %>
+        <%  end %>
+      </td>
+    </tr>
+    <%  end %>
+    <% end %>
+ </tbody>
+</table>
+<%= will_paginate %>

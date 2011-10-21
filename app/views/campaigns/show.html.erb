@@ -1,0 +1,20 @@
+<table class="campaign" summary="Information campagne">
+  <tr>
+    <td class="main">
+      <h1>
+        <%= @title %>
+      </h1>
+      <strong>Intitulé</strong> <%= @campaign.name %><br />
+      <strong>Description</strong> <%= @campaign.description %><br />
+      <% if !@campaign.first_phone_number.empty? %>  
+      <strong>Premier numéro de téléphone</strong> <%= @prospect.first_phone_number %><br />
+      <strong>Dernier numéro de téléphone</strong> <%= @prospect.last_phone_number %><br />     
+      <% end %>
+    </td>
+    <td class="sidebar round">
+      <strong>Informations sur cette campagne</strong><br/>
+      <strong>Créée le</strong> <%= @campaign.created_at.strftime("%d %B %Y %H:%M:%S") %><br/>
+      <strong>Nbre de prospects</strong> <%= @campaign.prospects.count %>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,15 @@
+    <tr>
+      <td class="prospect">
+        <span class="user">
+        </span>
+          <%= feed_prospect.user.firstname + " " + feed_prospect.user.lastname %>
+        <span class="name">a un nouveau prospect : <%= feed_prospect.first_name+ " " + feed_prospect.last_name %></span>
+        <span class="timestamp">
+          Posté il y a <%= time_ago_in_words(feed_prospect.created_at) %>.
+        </span>
+      </td>
+      <td>
+      <%= link_to "éditer", feed_prospect, :method => :edit %>
+      </td>
+      <td>
+    </tr>

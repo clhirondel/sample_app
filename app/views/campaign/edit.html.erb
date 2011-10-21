@@ -1,0 +1,30 @@
+<h1>Edition du client</h1>
+
+<%= nested_form_for @client, :html=>{:multipart => true } do |f| %>
+<%= render 'shared/error_messages', :object => f.object %>
+  <div class="field">
+    <%= f.label :string1 %><br />
+    <%= f.text_field :string1 %>
+  </div>
+  <div class="field">
+    <%= f.label :integer1 %><br/>
+    <%= f.text_field :integer1 %>
+  </div>
+  <%= f.fields_for :attachments do |attachment_form|  %>
+    <p>
+    <%= attachment_form.label :description %><br />
+    <%= attachment_form.text_area :description %>
+    </p>
+    <p>
+      <%= image_tag(attachment_form.object.file.url) if attachment_form.object.file? %>
+
+    <%= attachment_form.label :file %><br />
+    <%= attachment_form.file_field :file %>
+    </p>
+    <%= attachment_form.link_to_remove "Remove this attachment" %>
+  <% end %>
+  <%= f.link_to_add "Add attachment", :attachments %>
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>

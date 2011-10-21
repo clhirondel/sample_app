@@ -1,0 +1,58 @@
+<h1>Toutes les campagnes</h1>
+
+<%= link_to "Nouvelle Campagne", new_campaign_path %><br/>
+
+<div id="rightCol">
+  <ul class="prospects_status">
+    <li>
+      <%= link_to "Tous", campaigns_path %>
+    </li>
+    <li>
+      <%= link_to "Décline", campaigns_path(:type => "Décline") %>
+    </li>
+    <li>
+      <%= link_to "Annuaire d'école", campaigns_path(:type => "Annuaire d'école") %>
+    </li>
+    <li>
+      <%= link_to "Annuaire d'entreprise", campaigns_path(:type => "Annuaire d'entreprise") %>
+    </li>
+  </ul>
+  <div id="DateSearch">
+   <%= form_tag campaigns_path, :method => 'get', :id => "prospects_date_range" do %>
+    <p>
+      <% if !params[:type].nil? %>  
+        <%= hidden_field_tag :type, params[:type] %>
+      <% end %>
+      <% if !params[:dir].nil? %>  
+        <%= hidden_field_tag :dir, params[:dir] %>
+      <% end %>
+      <% if !params[:sort].nil? %>  
+        <%= hidden_field_tag :sort, params[:sort] %>
+      <% end %>
+      <% if !params[:s].nil? %>    
+        <%= hidden_field_tag :s, params[:s] %>
+      <%  end %>
+    <div>
+      <label>Du:</label> <%= text_field_tag  :min_date, params[:min_date], :class => "datepicker_index" %>
+    </div>
+    <div>
+      <label>Au: </label> <%= text_field_tag :max_date, params[:max_date], :class => "datepicker_index" %>     
+    </div>
+    </p>
+    <div style="text-align: center;">
+      <%= submit_tag "Rechercher période", :name => nil %>
+    </div>
+      <%= text_field_tag :s, params[:s] %>
+      <%= submit_tag "Search", :name => nil %>
+  </div>
+  <% end %>
+</div>
+<div id="contentArea">
+<%= form_tag campaigns_path, :method => 'get', :id => "prospects_search" do %>
+  <p>
+
+  </p>  
+ <div id="prospects_found"><%= render 'campaign' %></div>
+
+<% end %>
+ </div>
