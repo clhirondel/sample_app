@@ -60,7 +60,7 @@
           <%= link_to "éditer", edit_campaign_path(campaign) %>
         <% end %>
         <% if can? :destroy, campaign %>
-          <%= link_to "supprimer", campaign, :method => :delete, :title => "Supprimer #{campaign.name} ?" %>
+          <%= link_to "supprimer", campaign, :method => :delete,  :remote=>true, :class=>'delete_campaign', :confirm => 'Are you sure?', :title => "Supprimer #{campaign.name} ?" %>
         <%  end %>
       </td>
     </tr>

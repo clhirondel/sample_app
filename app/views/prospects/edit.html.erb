@@ -119,14 +119,11 @@
   </fieldset>
   <div id="validate_box">
     <div class="field">
-      <%= f.radio_button :prospect_status, "Meeting booked" %>RDV OK<br />
+      <%= f.radio_button :prospect_status, "To classify" %>RDV OK<br />
       <p id="prospect_prospect_status_meeting_booked" class="hidden_fields">
         <%= f.label :meeting_at %>
          <%= f.text_field :meeting_at, :value => @prospect.meeting_at.try(:strftime,"%d/%m/%Y %H:%M"), :class => "datepicker_edit" %>
       </p>
-    </div>
-    <div class="field">
-      <%= f.radio_button :prospect_status, "To classify" %>A classer<br />
     </div>
     <div class="field">
       <%= f.radio_button :prospect_status, "To recall" %>A rappeler<br />

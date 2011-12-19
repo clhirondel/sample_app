@@ -1,0 +1,23 @@
+  <table class="profile" summary="Information profil">
+  <tr>
+    <td class="main">
+      <h1>
+        <%= @title %>
+      </h1>
+      <%= form_for(@prospect, :validate=>true) do |f| %>
+      <%= render 'shared/error_messages', :object => f.object %>     
+      <strong>Nom</strong> <%= @prospect.last_name%><br />
+      <strong>Prénom</strong> <%= @prospect.first_name %><br />
+      <strong>EMail</strong> <%= @prospect.email %><br />
+      <strong>Adresse</strong> <%= @prospect.address %><br />
+      <strong>Age</strong> <%= @prospect.birthyear %><br />
+      <strong>Statut du prospect</strong> <%= @prospect.prospect_status %>
+      <strong>Consultant assigné: </strong><br />
+      <%=  f.select :consultant_id, @users.map { |u| ["#{u.firstname} #{u.lastname}", u.id] },:selected => @prospect.consultant_id, :include_blank => true %>
+      <div class="actions">
+        <%= f.submit "Update" %>
+      </div>  
+    <% end %>
+    </td>
+  </tr>
+</table>

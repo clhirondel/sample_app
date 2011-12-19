@@ -9,14 +9,11 @@
     <%= f.text_field :timespent %>
   </div>  
     <div class="field">
-      <%= f.radio_button :prospect_status, "Meeting booked" %>RDV OK<br />
-      <p id="prospect_prospect_status_meeting_booked" class="hidden_fields">
+      <%= f.radio_button :prospect_status, "Meeting at" %>RDV OK<br />
+      <p id="prospect_prospect_status_meeting_at" class="hidden_fields">
         <%= f.label :meeting_at %>
          <%= f.text_field :meeting_at, :value => @prospect.meeting_at.try(:strftime,"%d/%m/%Y %H:%M"), :class => "datepicker_edit" %>
       </p>
-    </div>
-    <div class="field">
-      <%= f.radio_button :prospect_status, "To classify" %>A classer<br />
     </div>
     <div class="field">
       <%= f.radio_button :prospect_status, "To recall" %>A rappeler<br />
@@ -56,9 +53,9 @@
   </fieldset>
   <fieldset id="prospect_fieldset">
     <legend>2ème étape: Prise de rendez-vous</legend>
-    <div class="field_first">
+    <div class="field">
       <%= f.label :meeting_at %>
-      <%= f.text_field :meeting_at, :class => "datepicker_edit", :onchange => "$('input[id=prospect_meeting_at]').val(this.value)" %>
+      <%= f.text_field :meeting_at, :class => "datepicker_index", :onchange => "$('input[id=prospect_meeting_at]').val(this.value)" %>
     </div>
     <div class="field_first" >
     <%= f.label :meeting_at, "Lieu de réunion"  %>

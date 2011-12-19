@@ -2,7 +2,7 @@ class Prospect < ActiveRecord::Base
   attr_accessible :last_name, :first_name, :civility, :birthyear,  :email, :address, :postal_code, :digital_code,
         :floor, :city, :phone_number, :office_phone_number, :mobile_phone_number, :situation_familiale, :nb_enfants_a_charges,  
         :professional_status, :revenus_mensuels_net, :logement_rp, :mensualite_rp, :impots_sur_le_revenu, :charges_rp, :charges_autres,
-        :taux_endettement, :prospect_status, :meeting_at, :meeting_place, :to_recall, :to_recall_at, :hors_cible_cause, :comments, :timespent
+        :taux_endettement, :prospect_status, :meeting_at, :meeting_place, :to_recall, :to_recall_at, :hors_cible_cause, :comments, :consultant_id, :timespent
   
   belongs_to :user
   
@@ -131,7 +131,7 @@ class Prospect < ActiveRecord::Base
   private
   
   def to_recall_status_selected?
-    self.prospect_status == "To recall"
+    self.prospect_status == "To recall" && self.meeting_at_changed?
   end
   
   def off_target_selected?

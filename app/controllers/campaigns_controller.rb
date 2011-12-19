@@ -50,8 +50,11 @@ class CampaignsController < ApplicationController
   end
   
   def destroy
-    @campaign.destroy    
-    redirect_to prospects_path
+    @campaign.destroy
+    respond_to do |format|  
+      format.html { redirect_to(campaigns_path) }  
+      format.js
+    end
   end
 
   private

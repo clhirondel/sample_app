@@ -54,7 +54,7 @@
            }
         });
         
-        $('form .field_first input, form .field_second input').each(function(){
+        $('form .field_first input[type="text"], form .field_second input[type="text"]').each(function(){
            nb_fields+=1;
            if(!$(this).val()){
                nb_empty_fields +=1;
@@ -129,6 +129,7 @@
          altTimeField: '',  
          time24h: true  //set today as minimum date
       });
+      
       $.datepicker.regional['fr'] = {clearText: 'Effacer', clearStatus: '', closeText: 'Fermer', closeStatus: 'Fermer sans modifier', prevText: '<Préc', prevStatus: 'Voir le mois précédent', nextText: 'Suiv>', nextStatus: 'Voir le mois suivant', currentText: 'Courant', currentStatus: 'Voir le mois courant', monthNames: ['janvier','février','mars','avril','mai','juin', 'juillet','août','septembre','octobre','novembre','décembre'], monthNamesShort: ['Jan','Fév','Mar','Avr','Mai','Jun', 'Jul','Aoû','Sep','Oct','Nov','Déc'], monthStatus: 'Voir un autre mois', yearStatus: 'Voir un autre année', weekHeader: 'Sm', weekStatus: '', dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'], dayNamesShort: ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'], dayNamesMin: ['Di','Lu','Ma','Me','Je','Ve','Sa'], dayStatus: 'Utiliser DD comme premier jour de la semaine', dateStatus: 'Choisir le DD, MM d', dateFormat: 'dd/mm/yy', firstDay: 0, initStatus: 'Choisir la date', isRTL: false}; $.datepicker.setDefaults($.datepicker.regional['fr']);
 
 var windw = this;

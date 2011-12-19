@@ -1,13 +1,13 @@
 #Encoding: UTF-8
 class ProspectsController < ApplicationController
-  before_filter :authenticate, :only => [:index, :edit, :update, :destroy]
+  before_filter :authenticate, :only => [:index, :edit, :update, :testun, :destroy]
 
   load_and_authorize_resource
   
   include ProspectsHelper   
   
   helper_method :sort_column, :sort_direction
-  
+
   def index
     @title = "Tous les prospects" 
 
@@ -37,6 +37,17 @@ class ProspectsController < ApplicationController
       @prospect.birthyear = Time.now.year - @prospect.birthyear 
     end
     @title = @prospect.first_name + " " + @prospect.last_name
+    
+    respond_to do |format|
+      format.html
+      format.pdf { 
+        html = render_to_string :action => "prospection_slip.html.erb"
+        kit  = PDFKit.new(html)
+        kit.stylesheets << File.join( RAILS_ROOT, "public", "stylesheets", "pdf.css" )
+ 
+        send_data kit.to_pdf, :filename => "item.pdf", :type => 'application/pdf', :disposition => 'inline'
+      }
+    end
   end
   
   def new
@@ -82,6 +93,12 @@ class ProspectsController < ApplicationController
       @title = "Édition du prospect"
       render 'edit'
     end
+  end
+  
+  def assign
+    @prospect = Prospect.find(params[:id])
+    @users = User.all
+    @title = "Assignation du Prospect"
   end
   
   def destroy

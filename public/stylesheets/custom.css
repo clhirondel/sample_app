@@ -1,5 +1,5 @@
 body {
-  background: #cff;
+  background: #3E828C;
 }
 
 header {
@@ -11,13 +11,17 @@ header img {
   background: #fff;
 }
 
-#rightCol{
+header a img {
+  border: 1px solid #737373;
+}
 
+#rightCol{
     padding: 15px;
     float: right;
     width: 215px;
     word-wrap: break-word;
-    background-color: #F7F7F7;
+    background-color: #F7F5F4;
+    border: 1px solid #8C8C8C;
 }
 
 #content {
@@ -26,6 +30,7 @@ header img {
   margin: auto;
   font-size: 100%;
   padding: 20px;
+  border: 1px solid #737373;
   background: #fff;
   width: 968px;
 }
@@ -56,7 +61,7 @@ input[type=text],[type=password], field_with_errors input  {
 
 input[type=text].hasDatepicker {
     background: white url("/images/datepicker-input-icon.png") no-repeat 100% 2px;
-    width: 128px; 
+    width: 140px; 
     left:30px;
 }
 input#prospect_submit{
@@ -299,6 +304,15 @@ ul.prospects_status li{
   list-style: none outside none;
   margin-left: 2px;
   padding: 5px;
+}
+ul.prospects_status li a{
+  display: block;
+}
+
+
+ul.prospects_status li:hover{
+    background-color: #EEEEEE;
+    opacity: 1;
 }
 
 table.prospects {
