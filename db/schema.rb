@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(:version => 20111017134102) do
     t.integer  "charges_autres",       :limit => 8
     t.integer  "taux_endettement",     :limit => 2
     t.string   "prospect_status",      :limit => 32
-    t.datetime "meeting_at"
-    t.string   "meeting_place",        :limit => 128
+    t.datetime "rendezvous_at"
+    t.string   "rendezvous_place",        :limit => 128
     t.string   "to_recall",            :limit => 10
     t.datetime "to_recall_at"
     t.string   "off_target_cause",     :limit => 32

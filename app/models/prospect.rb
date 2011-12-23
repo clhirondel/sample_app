@@ -2,7 +2,8 @@ class Prospect < ActiveRecord::Base
   attr_accessible :last_name, :first_name, :civility, :birthyear,  :email, :address, :postal_code, :digital_code,
         :floor, :city, :phone_number, :office_phone_number, :mobile_phone_number, :situation_familiale, :nb_enfants_a_charges,  
         :professional_status, :revenus_mensuels_net, :logement_rp, :mensualite_rp, :impots_sur_le_revenu, :charges_rp, :charges_autres,
-        :taux_endettement, :prospect_status, :meeting_at, :meeting_place, :to_recall, :to_recall_at, :hors_cible_cause, :comments, :consultant_id, :timespent
+        :taux_endettement, :prospect_status, :rendezvous_at, :rendezvous_place, :to_recall, :to_recall_at, :hors_cible_cause, :comments, 
+        :consultant_id, :off_target_cause, :timespent
   
   belongs_to :user
   
@@ -14,9 +15,12 @@ class Prospect < ActiveRecord::Base
   
   #datetime_regex = /(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)/i
 
+  validates :professional_status, :presence => true, :if => :rendezvous_status_selected?
+
+  validates :impots_sur_le_revenu, :presence => true, :if => :rendezvous_status_selected?
   
   validates :last_name, :uniqueness => { :scope => [:first_name, :phone_number] | [:first_name, :office_phone_number] | [:first_name, :mobile_phone_number] },
-                :length   => { :maximum => 32 }
+                :length   => { :maximum => 32 }, :if => :rendezvous_status_selected?
 
   validates :first_name, :length   => { :maximum => 32 },
                 :allow_nil => true, :allow_blank => true
@@ -24,10 +28,12 @@ class Prospect < ActiveRecord::Base
   validates :civility, :length => { :maximum => 3 }
   
   validates :birthyear, :numericality => { :less_than_or_equal_to => 120, :greater_than_or_equal_to => 18 },
-                :allow_nil => true, :allow_blank => true
+                :allow_nil => true, :allow_blank => true, :presence => true, :if => :rendezvous_status_selected?
   
   validates :email, :email_format => true,
                 :allow_nil => true, :allow_blank => true
+  
+  validates :address, :presence => true, :if => :rendezvous_status_selected?
   
   validates :postal_code, :numericality  => true, :length   => { :minimum => 4, :maximum => 5 },
                   :allow_nil => true, :allow_blank => true
@@ -39,7 +45,7 @@ class Prospect < ActiveRecord::Base
                 :allow_nil => true, :allow_blank => true
   
   validates :city,  :length   => { :maximum => 64 },
-                :allow_nil => true, :allow_blank => true
+                :allow_nil => true, :allow_blank => true, :presence => true, :if => :rendezvous_status_selected?
 
   validates :phone_number, :uniqueness => { :scope => [:last_name, :first_name] }, :numericality  => true,
                 :length => { :is => 10 }, :allow_nil => true, :allow_blank => true
@@ -75,10 +81,10 @@ class Prospect < ActiveRecord::Base
 
   validates :prospect_status, :length => { :maximum => 32 }, :presence => true
   
-  validates :meeting_at, :date => {:after => Time.now, :before => Time.now + 1.year},
-                :allow_nil => true, :allow_blank => true
+  validates :rendezvous_at, :date => {:after => Time.now, :before => Time.now + 1.year},
+                :allow_nil => true, :allow_blank => true, :presence => true, :if => :rendezvous_status_selected?
   
-  validates :meeting_place, :length => { :maximum => 32 }
+  validates :rendezvous_place, :length => { :maximum => 32 }, :presence => true, :if => :rendezvous_status_selected?
   
   validates :to_recall, :length => { :is => 10 }, :presence => true, :if => :to_recall_status_selected?
   
@@ -131,10 +137,14 @@ class Prospect < ActiveRecord::Base
   private
   
   def to_recall_status_selected?
-    self.prospect_status == "To recall" && self.meeting_at_changed?
+    self.prospect_status == "A rappeler"
   end
   
   def off_target_selected?
-    self.prospect_status == "Off target"
+    self.prospect_status == "Hors cible"
+  end
+  
+  def rendezvous_status_selected?
+    self.prospect_status == "Rendez-vous"
   end
 end

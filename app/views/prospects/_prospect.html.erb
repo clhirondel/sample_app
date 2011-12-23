@@ -61,7 +61,8 @@
           <%= link_to "éditer", edit_prospect_path(prospect) %>
         <% end %>
         <% if can? :destroy, prospect %>
-          <%= link_to "supprimer", prospect, :method => :delete, :title => "#{prospect.first_name} #{prospect.last_name}" %>
+          <%= link_to "supprimer", prospect, :method => :delete,
+                                     :confirm => "Etes-vous certain de vouloir supprimer " + prospect.first_name + " " + prospect.last_name + " ?" %>
         <%  end %>
         <% if can? :assign, prospect %>
           <%= link_to "assigner", assign_prospect_path(prospect) %>

@@ -38,7 +38,7 @@ Factory.define :prospect do |prospect|
   prospect.debt_ratio "500"
   prospect.day "2013-01-01"
   prospect.place  "Café de la cité"
-  prospect.meeting false
+  prospect.rendezvous false
   prospect.to_classify false
   prospect.to_call_on "2011-10-01 19:00:00"
   prospect.comments "X"

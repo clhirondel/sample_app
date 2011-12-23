@@ -1,7 +1,18 @@
-    <li> 
-      <%= link_to user.firstname + " " + user.lastname, user %>
-      <% if current_user.admin? %>
-      | <%= link_to "supprimer", user, :method => :delete, :confirm => "Etes-vous certain de vouloir supprimer "+ 
-          user.firstname + " " + user.lastname + " ?"%>
-      <% end %>
-    </li>
+<% if can? :read, user %>
+<tr>
+  <td>
+    <%= link_to user.firstname + " " + user.lastname, user %>
+  </td>
+  <td>
+    <% for role in user.roles %>
+    <%= role.position %>
+    <% end %>
+  </td>
+  <td>
+  <% if current_user.admin? %>
+  | <%= link_to "supprimer", user, :method => :delete, :confirm => "Etes-vous certain de vouloir supprimer "+ 
+      user.firstname + " " + user.lastname + " ?"%>
+  <% end %>
+  </td>
+</tr>
+<% end %>

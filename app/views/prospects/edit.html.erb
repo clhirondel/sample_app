@@ -1,148 +1,171 @@
-<h1>Edition du prospect</h1>
+<h1><%= @title %></h1>
 <%= form_for(@prospect, :validate=>true) do |f| %>
-  <%= render 'shared/error_messages', :object => f.object %>
-  <div class="timespent">
+<div id="rightCol" class="validate_box">
+    <div id="bardivs">
+      <div id="progressbar"></div>
+      <div id="progresstext"></div>
+    </div>
+    <div class="timespent">
     <%= f.text_field :timespent %>
   </div>  
-  <fieldset>
-    <legend>1ère étape: Question d'introduction</legend>
-  <div class="checkbox">
-    <%= f.label :professional_status, "Statut professionnel:"  %>
-    <%= f.radio_button :professional_status, "Cadre" %>Cadre
-    <%= f.radio_button :professional_status, "Non cadre" %>Non cadre
-  </div>
-  <div class="checkbox">
-    <%= f.label :impots_sur_le_revenu, "Impot sur le revenu:"  %>
-    <%= f.radio_button :impots_sur_le_revenu, "-3500€" %>-3500€
-    <%= f.radio_button :impots_sur_le_revenu, "+3500€" %>+3500€
-  </div>
-  </fieldset>
-  <fieldset>
-    <legend>2ème étape: Prise de rendez-vous</legend>
-  <div class="checkbox">
-    <%= f.label :meeting_at, "Impot sur le revenu:"  %>
-    <%= f.radio_button :meeting_at, "Lieu professionnel" %>Lieu professionnel
-    <%= f.radio_button :meeting_at, "Cabinet" %>Cabinet
-    <%= f.radio_button :meeting_at, "Domicile" %>Domicile
-  </div>
-    <div class="field">
-      <%= f.label :meeting_at %>
-      <%= f.text_field :meeting_at %>
+    <div class="field_radio">
+      <%= f.radio_button :prospect_status, "Rendez-vous" %>RDV OK<br />
     </div>
-    <div class="field">
-      <%= f.label :meeting_place %>
-      <%= f.text_field :meeting_place %>
-    </div>
-    <div class="field">
-      <%= f.label :address %>
-      <%= f.text_field :address %>
-    </div>
-    <div class="field">
-      <%= f.label :postal_code %>
-      <%= f.text_field :postal_code %>
-    </div>
-    <div class="field">
-      <%= f.label :city %>
-      <%= f.text_field :city %>
-    </div>
-    <div class="field">
-      <%= f.label :floor %>
-      <%= f.text_field :floor %>
-    </div>
-    <div class="field">
-      <%= f.label :digital_code %>
-      <%= f.text_field :digital_code %>
-    </div>
-    <div class="field">
-      <%= f.label :comments %>
-      <%= f.text_area :comments %>
-    </div>
-    <div>
-      <div class="field">
-        <%= f.label :phone_number %>
-        <%= f.text_field :phone_number %>
-      </div>
-      <div class="field">
-        <%= f.label :office_phone_number %>
-        <%= f.text_field :office_phone_number %>
-      </div>
-    </div>
-    <div class="field">
-      <%= f.label :mobile_phone_number %>
-      <%= f.text_field :mobile_phone_number %>
-    </div>
-  </fieldset>
-  <fieldset>
-    <legend>3ème étape: Qualifications</legend>
-  <div class="checkbox">
-    <%= f.label :civility, "Civilité"  %>
-    <%= f.radio_button :civility, "M." %>M.
-    <%= f.radio_button :civility, "Mlle" %>Melle
-    <%= f.radio_button :civility, "Mme" %>Mme
-  </div>
-  <div class="field">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </div>
-   <div class="field">
-    <%= f.label :birthyear %>
-    <%= f.text_field :birthyear %>
-  </div>
-  <div class="field">
-    <%= f.label :situation_familiale %>
-    <%= f.text_field :situation_familiale %>
-  </div>
-  <div class="field">
-    <%= f.label :nb_enfants_a_charges %>
-    <%= f.text_field :nb_enfants_a_charges %>
-  </div>
-  <div class="field">
-    <%= f.label :revenus_mensuels_net %>
-    <%= f.text_field :revenus_mensuels_net %>
-  </div>
-  <div class="field">
-    <%= f.label :charges_rp %>
-    <%= f.text_field :charges_rp %>
-  </div>
-  <div class="field">
-    <%= f.label :birthyear %>
-    <%= f.text_field :birthyear %>
-  </div>
-  <div class="field">
-    <%= f.label :taux_endettement  %>
-    <%= f.text_field :taux_endettement  %>
-  </div>
-  </fieldset>
-  <div id="validate_box">
-    <div class="field">
-      <%= f.radio_button :prospect_status, "To classify" %>RDV OK<br />
-      <p id="prospect_prospect_status_meeting_booked" class="hidden_fields">
-        <%= f.label :meeting_at %>
-         <%= f.text_field :meeting_at, :value => @prospect.meeting_at.try(:strftime,"%d/%m/%Y %H:%M"), :class => "datepicker_edit" %>
-      </p>
-    </div>
-    <div class="field">
-      <%= f.radio_button :prospect_status, "To recall" %>A rappeler<br />
-      <p id="prospect_prospect_status_to_recall" class="hidden_fields">
+    <div class="field_radio">
+      <%= f.radio_button :prospect_status, "A rappeler" %>A rappeler<br />
+      <p id="prospect_prospect_status_a_rappeler" class="hidden_fields">
         <%= f.label :to_recall %><br />
         <%= f.text_field :to_recall, :value => @prospect.to_recall %><br />
         <%= f.label :to_recall_at %><br />
         <%= f.text_field :to_recall_at, :value => @prospect.to_recall_at.try(:strftime,"%d/%m/%Y %H:%M"), :class => "datepicker_edit" %>
       </p>
     </div>
-    <div class="field">
-      <%= f.radio_button :prospect_status, "Off target" %>Hors Cible<br />
-      <p id="prospect_prospect_status_off_target" class="hidden_fields">
+    <div class="field_radio">
+      <%= f.radio_button :prospect_status, "Hors cible" %>Hors Cible<br />
+      <p id="prospect_prospect_status_hors_cible" class="hidden_fields">
         <%= f.label :off_target_cause %><br />
-        <%= f.text_area :off_target_cause %>
+        <%= f.select :off_target_cause, options_for_select([["Hors impôts", "Hors impôts"], "Hors âge", "Hors origine"]) %>
       </p>
     </div>
     <div class="actions">
       <%= f.submit "Update" %>
     </div>
+</div>
+<div id="contentArea">  
+  <%= render 'shared/error_messages', :object => f.object %>
+  <div id="prospect_fieldset">
+  <fieldset>
+    <legend>1ère étape: Question d'introduction</legend>
+  <div class="field_first">
+    <%= f.label :professional_status, "Statut professionnel:"  %>
+    <%= f.radio_button :professional_status, "Cadre" %>Cadre
+    <%= f.radio_button :professional_status, "Non cadre" %>Non cadre
   </div>
+  <div class="field_first">
+    <%= f.label :impots_sur_le_revenu, "Impot sur le revenu:"  %>
+    <%= f.radio_button :impots_sur_le_revenu, "-3500€" %>-3500€
+    <%= f.radio_button :impots_sur_le_revenu, "+3500€" %>+3500€
+  </div>
+  </fieldset>
+  <fieldset id="prospect_fieldset">
+    <legend>2ème étape: Prise de rendez-vous</legend>
+    <div class="field">
+      <%= f.label :rendezvous_at %>
+      <%= f.text_field :rendezvous_at, :class => "datepicker_index", :onchange => "$('input[id=prospect_rendezvous_at]').val(this.value)" %>
+    </div>
+    <div class="field_radio" >
+    <%= f.label :rendezvous_place, "Lieu de réunion"  %>
+    <%= f.radio_button :rendezvous_place, "Professionnel", :onclick => "$('input').each(function(){
+        switch(this.id){
+          case 'prospect_address': $(this).val(''); break;
+          case 'prospect_postal_code': $(this).val(''); break;
+          case 'prospect_city': $(this).val(''); break;
+          case 'prospect_floor': $(this).val(''); break;
+          case 'prospect_digital_code': $(this).val(''); break;
+            $(this).val('');
+        }
+    });" %> Lieu professionnel
+
+    <%= f.radio_button :rendezvous_place, "Domicile", :onclick => "$('input').each(function(){
+        switch(this.id){
+          case 'prospect_address': $(this).val(''); break;
+          case 'prospect_postal_code': $(this).val(''); break;
+          case 'prospect_city': $(this).val(''); break;
+          case 'prospect_floor': $(this).val(''); break;
+          case 'prospect_digital_code': $(this).val(''); break;
+            $(this).val('');
+        }
+    });" %> Domicile
+    <%= f.radio_button :rendezvous_place, "Cabinet", :onclick => "$('input').each(function(){
+        switch(this.id){
+          case 'prospect_address': $(this).val('192 rue Lauriston'); break;
+          case 'prospect_postal_code': $(this).val('75016'); break;
+          case 'prospect_city': $(this).val('Paris'); break;
+          case 'prospect_floor': $(this).val(''); break;
+          case 'prospect_digital_code': $(this).val(''); break;
+            $(this).val('');
+        }
+    });" %> Cabinet
+  </div>
+    <div class="field_first">
+      <%= f.label :address %>
+      <%= f.text_field :address, options={:style=>"width:430px"} %>
+    </div>
+    <div class="field_second">
+      <%= f.label :postal_code %>
+      <%= f.text_field :postal_code %>
+    </div>
+    <div class="field_second">
+      <%= f.label :city %>
+      <%= f.text_field :city %>
+    </div>
+    <div class="field_second">
+      <%= f.label :digital_code %>
+      <%= f.text_field :digital_code %>
+    </div>
+    <div class="field_second"> 
+      <%= f.label :floor %>
+      <%= f.text_field :floor %>
+    </div>
+    <div class="field_first">
+      <%= f.label :comments %>
+      <%= f.text_area :comments %>
+  </div>
+    <div class="field_second">
+      <%= f.label :office_phone_number %>
+      <%= f.text_field :office_phone_number %>
+    </div>
+      <div class="field_second">
+        <%= f.label :phone_number %>
+        <%= f.text_field :phone_number %>
+      </div>
+    <div class="field_first">
+      <%= f.label :mobile_phone_number %>
+      <%= f.text_field :mobile_phone_number %>
+    </div>
+  </fieldset>
+  <fieldset id="prospect_fieldset">
+    <legend>3ème étape: Qualifications</legend>
+  <div class="field_first">
+    <%= f.label :civility, "Civilité"  %>
+    <%= f.radio_button :civility, "M." %>M.
+    <%= f.radio_button :civility, "Mlle" %>Melle
+    <%= f.radio_button :civility, "Mme" %>Mme
+  </div>
+  <div class="field_second">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field_second">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+   <div class="field_first">
+    <%= f.label :birthyear %>
+    <%= f.text_field :birthyear %>
+  </div>
+  <div class="field_second">
+    <%= f.label :situation_familiale %>
+    <%= f.text_field :situation_familiale %>
+  </div>
+  <div class="field_second">
+    <%= f.label :nb_enfants_a_charges %>
+    <%= f.text_field :nb_enfants_a_charges %>
+  </div>
+  <div class="field_first">
+    <%= f.label :charges_rp %>
+    <%= f.text_field :charges_rp %>
+  </div>
+  <div class="field_second">
+    <%= f.label :revenus_mensuels_net %>
+    <%= f.text_field :revenus_mensuels_net %>
+  </div>
+  <div class="field_second">
+    <%= f.label :taux_endettement  %>
+    <%= f.text_field :taux_endettement  %>
+  </div>
+  </fieldset>
+  </div>
+</div>
+  
 <% end %>

@@ -19,10 +19,10 @@ class User < ActiveRecord::Base
                          
   has_many :following, :through => :relationships, :source => :followed
   
-  validates :lastname,  :presence => true,
+  validates :lastname,  :presence => true, :uniqueness => { :scope => [:firstname]},
                         :length   => { :maximum => 50 }
                       
-  validates :firstname, :presence => true,
+  validates :firstname, :presence => true, :uniqueness => { :scope => [:lastname]},
                         :length  => { :maximum => 50 }
                       
   validates :email, :presence => true,

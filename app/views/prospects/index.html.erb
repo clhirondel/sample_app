@@ -4,20 +4,33 @@
 
 <div id="rightCol">
   <ul class="prospects_status">
-    <li>
+    <li
+      <% if @status.nil? %>
+      class="selected"
+      <% end %>
+    >
       <%= link_to "Tous", prospects_path %>
     </li>
-    <li>
-      <%= link_to "A rappeler", prospects_path(:prospect_status => "to_recall") %>
+    <li
+      <% if @status == "a_rappeler" %>
+      class="selected"
+      <% end %>  
+    >
+      <%= link_to "A rappeler", prospects_path(:prospect_status => "a_rappeler") %>
     </li>
-    <li>
-      <%= link_to "A classer", prospects_path(:prospect_status => "to_classify") %>
+    <li
+      <% if @status == "rendez-vous" %>
+      class="selected"
+      <% end %>  
+    >
+      <%= link_to "RDV OK", prospects_path(:prospect_status => "rendez-vous") %>
     </li>
-    <li>
-      <%= link_to "RDV OK", prospects_path(:prospect_status => "meeting_booked") %>
-    </li>
-    <li>
-      <%= link_to "Hors cible", prospects_path(:prospect_status => "off_target") %>
+    <li
+      <% if @status == "hors_cible" %>
+      class="selected"
+      <% end %>  
+    >
+      <%= link_to "Hors cible", prospects_path(:prospect_status => "hors_cible") %>
     </li>
   </ul>
   <div id="DateSearch">
@@ -54,9 +67,6 @@
 
 
 <%= form_tag prospects_path, :method => 'get', :id => "prospects_search" do %>
-  <p>
-
-  </p>  
  <div id="prospects_found"><%= render 'prospect' %></div>
 
 <% end %>

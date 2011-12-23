@@ -8,17 +8,20 @@ class Ability
     
     if user.admin?
       can :manage, :all
-    elsif user.role? :prospect_manager
+    elsif user.role? :office_manager
+      can [:read, :edit, :update], User
       can :manage, Prospect
       can :manage, Campaign
       can :read, Client
     elsif user.role? :prospector
-      can [:new, :create], Prospect
-      can [:read, :edit, :update], Prospect do |prospect|  
+      can [:read, :edit, :update], User
+      can [:read, :new, :create], Prospect
+      can [:edit, :update], Prospect do |prospect|  
         prospect.try(:user) == user
+        prospect.try(:prospect_status) != "Rendez-vous"
       end
     else
-      can :read, :all
+      can [:new, :create], User
     end
     #
     # The first argument to `can` is the action you are giving the user permission to do.

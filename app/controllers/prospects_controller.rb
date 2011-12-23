@@ -1,6 +1,6 @@
 #Encoding: UTF-8
 class ProspectsController < ApplicationController
-  before_filter :authenticate, :only => [:index, :edit, :update, :testun, :destroy]
+  before_filter :authenticate, :only => [:index, :edit, :update, :destroy]
 
   load_and_authorize_resource
   
@@ -11,9 +11,11 @@ class ProspectsController < ApplicationController
   def index
     @title = "Tous les prospects" 
 
+    @status = params[:prospect_status]
+    
     #@search = Prospect.search do
      # fulltext params[:search]
-  @prospects =  Prospect.search(params[:s])
+    @prospects =  Prospect.search(params[:s])
 
        # with :prospect_status, params[:prospect_status].humanize
        @prospects = @prospects.selected_status(params[:prospect_status])

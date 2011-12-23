@@ -235,7 +235,8 @@ div.actions {
     color: red;
     font-size: 12px;
     position: absolute;
-    left: 255px;
+    /*left: 255px;*/
+    right: 0px;
     width: 150px;
     top: -17px;
     background:#000;

@@ -1,9 +1,15 @@
 <h1>Tous les utilisateurs</h1>
 
-<%= will_paginate %>
-
-<ul class="users">
-  <%= render @users %>    
-</ul>
-
-<%= will_paginate %>
+<table class="prospects" summary="Users">
+ <thead>
+  <tr>
+   <th>Nom</th>
+   <th>Type</th>
+   <th>Modifications</th>
+  </tr>
+ </thead>
+ <tbody>
+   <%= render @users %>
+ </tbody>
+    <%= will_paginate %>
+</table>
